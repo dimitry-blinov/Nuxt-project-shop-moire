@@ -1,11 +1,12 @@
 <template>
-  <h1>КОРЗИНА</h1>
+  <main class="content container">
+    <h1>Корзина</h1>
+  </main>
 </template>
 
 <script>
 export default {
-  name: 'Order',
-  layout: 'empty'
+  name: 'Order'
 }
 </script>
 
