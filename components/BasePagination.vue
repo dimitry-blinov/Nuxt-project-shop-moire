@@ -9,7 +9,7 @@
         @click.prevent="prevPage"
       >
         <svg width="8" height="14" fill="currentColor">
-          <use xlink:href="../public/img/svg/sprite.svg#icon-arrow-left" />
+          <use xlink:href="../static/img/svg/sprite.svg#icon-arrow-left" />
         </svg>
       </a>
     </li>
@@ -33,7 +33,7 @@
         @click.prevent="nextPage"
       >
         <svg width="8" height="14" fill="currentColor">
-          <use xlink:href="../public/img/svg/sprite.svg#icon-arrow-right" />
+          <use xlink:href="../static/img/svg/sprite.svg#icon-arrow-right" />
         </svg>
       </a>
     </li>

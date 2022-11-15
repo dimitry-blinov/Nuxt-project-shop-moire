@@ -31,35 +31,35 @@
         <li class="social__item">
           <a class="social__link" href="#" aria-label="Вконтакте">
             <svg width="20" height="11" fill="currentColor">
-              <use xlink:href="../public/img/svg/sprite.svg#icon-vk" />
+              <use xlink:href="../static/img/svg/sprite.svg#icon-vk" />
             </svg>
           </a>
         </li>
         <li class="social__item">
           <a class="social__link" href="#" aria-label="Инстаграм">
             <svg width="17" height="17" fill="currentColor">
-              <use xlink:href="../public/img/svg/sprite.svg#icon-insta" />
+              <use xlink:href="../static/img/svg/sprite.svg#icon-insta" />
             </svg>
           </a>
         </li>
         <li class="social__item">
           <a class="social__link" href="#" aria-label="Facebook">
             <svg width="17" height="17" fill="currentColor">
-              <use xlink:href="../public/img/svg/sprite.svg#icon-facebook" />
+              <use xlink:href="../static/img/svg/sprite.svg#icon-facebook" />
             </svg>
           </a>
         </li>
         <li class="social__item">
           <a class="social__link" href="#" aria-label="Twitter">
             <svg width="17" height="14" fill="currentColor">
-              <use xlink:href="../public/img/svg/sprite.svg#icon-twitter" />
+              <use xlink:href="../static/img/svg/sprite.svg#icon-twitter" />
             </svg>
           </a>
         </li>
         <li class="social__item">
           <a class="social__link" href="#" aria-label="Telegram">
             <svg width="19" height="17" fill="currentColor">
-              <use xlink:href="../public/img/svg/sprite.svg#icon-telegram" />
+              <use xlink:href="../static/img/svg/sprite.svg#icon-telegram" />
             </svg>
           </a>
         </li>

@@ -6,7 +6,7 @@
       </nuxt-link>
 
       <a class="header__logo">
-        <img src="../public/img/svg/logo-moire.svg" alt="Логотип интернет магазина Moire" width="116" height="34">
+        <img src="../static/img/svg/logo-moire.svg" alt="Логотип интернет магазина Moire" width="116" height="34">
       </a>
 
       <a class="header__tel" href="tel:8 800 600 90 09">
