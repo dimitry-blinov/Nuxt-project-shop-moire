@@ -6,7 +6,7 @@
           Каталог
         </h1>
         <span class="content__info">
-          152 товара
+          {{ countProducts }} {{ stringProductFormat(countProducts) }}
         </span>
       </div>
     </div>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import stringProductFormat from '../helpers/stringProductFormat'
 import ProductFilter from '@/components/ProductFilter'
 import ProductList from '@/components/ProductList.vue'
 import BasePagination from '@/components/BasePagination'
@@ -66,7 +67,8 @@ export default {
     return {
       products: [],
       productsPerPage: 3,
-      countProducts: 0
+      countProducts: 0,
+      stringProductFormat
     }
   },
   computed: {
