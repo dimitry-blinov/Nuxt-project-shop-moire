@@ -1469,4 +1469,10 @@ a {
     grid-row: 3/4
 }
 
+.perpage {
+  margin-left: auto;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
 /*# sourceMappingURL=style.min.css.map */
