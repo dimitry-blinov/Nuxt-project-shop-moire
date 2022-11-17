@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'ProductDisplaying',
+  name: 'ProductPerPage',
   props: {
     perPage: {
       default: 3,
