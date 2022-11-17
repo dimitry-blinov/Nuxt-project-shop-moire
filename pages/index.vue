@@ -15,8 +15,9 @@
       <product-filter />
 
       <section class="catalog">
+        <product-per-page :per-page.sync="limit" />
         <product-list :products="products" />
-        <base-pagination v-model="page" :count="countProducts" :per-page="productsPerPage" />
+        <base-pagination v-model="page" :count="countProducts" :per-page="limit" />
       </section>
     </div>
   </main>
@@ -24,16 +25,18 @@
 
 <script>
 import stringProductFormat from '../helpers/stringProductFormat'
-import ProductFilter from '@/components/ProductFilter'
-import ProductList from '@/components/ProductList.vue'
-import BasePagination from '@/components/BasePagination'
+import ProductPerPage from '../components/ProductPerPage'
+import ProductFilter from '../components/ProductFilter'
+import ProductList from '../components/ProductList.vue'
+import BasePagination from '../components/BasePagination'
 
 export default {
   name: 'IndexPage',
   components: {
     ProductList,
     ProductFilter,
-    BasePagination
+    BasePagination,
+    ProductPerPage
   },
   async asyncData ({
     $axios,
@@ -50,8 +53,7 @@ export default {
     }
     const response = await $axios.$get('https://vue-moire.skillbox.cc/api/products', {
       params: {
-        ...route.query,
-        limit: 3
+        ...route.query
       }
     })
     return {
@@ -60,14 +62,13 @@ export default {
         image: product.colors[0].gallery ? product.colors[0].gallery[0].file.url : product.colors[1].gallery[0].file.url
 
       })),
-      countProducts: response?.pagination?.total ? response.pagination.total : 0
+      countProducts: response.pagination ? response.pagination.total : response.items.length
     }
   },
   data () {
     return {
       products: [],
-      productsPerPage: 3,
-      countProducts: 0,
+      countProducts: null,
       stringProductFormat
     }
   },
@@ -79,9 +80,17 @@ export default {
       set (value) {
         this.$emit('page', value)
       }
+    },
+    limit: {
+      get () {
+        return Object.keys(this.$route.query).length ? Number(this.$route.query.limit) : 3
+      },
+      set (value) {
+        this.$emit('limit', value)
+      }
     }
   },
-  watchQuery: ['page'],
+  watchQuery: ['page', 'limit'],
   methods: {}
 }
 </script>
