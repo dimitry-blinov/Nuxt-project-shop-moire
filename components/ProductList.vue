@@ -1,6 +1,6 @@
 <template>
   <ul class="catalog__list">
-    <product-item v-for="product in products" :key="product.id" :product="product" />
+    <product-item v-for="(product, index) in products" :key="product.id" :colors="colors[index]" :product="product" />
   </ul>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     products: {
       type: Array,
       default: null
+    },
+    colors: {
+      type: Array,
+      default: () => [{}]
     }
   }
 
