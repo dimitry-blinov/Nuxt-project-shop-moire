@@ -16,7 +16,7 @@
 
       <section class="catalog">
         <product-per-page :per-page.sync="limit" />
-        <product-list :products="products" />
+        <product-list :products="products" :colors="colorsProduct" />
         <base-pagination v-model="page" :count="countProducts" :per-page="limit" />
       </section>
     </div>
@@ -88,6 +88,15 @@ export default {
       set (value) {
         this.$emit('limit', value)
       }
+    },
+    colorsProduct () {
+      return this.products
+        ? this.products.map(product => ({
+          ...product.colors.map(color => ({
+            ...color.color
+          }))
+        }))
+        : []
     }
   },
   watchQuery: ['page', 'limit'],
