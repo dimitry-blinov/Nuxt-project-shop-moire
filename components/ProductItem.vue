@@ -1,7 +1,9 @@
 <template>
   <li class="catalog__item">
     <nuxt-link class="catalog__pic" :to="`/product/${product.id}`">
-      <img :src="product.image" alt="">
+      <div class="block__img">
+        <img :src="productChangeImage" :alt="product.title">
+      </div>
     </nuxt-link>
 
     <h3 class="catalog__title">
@@ -9,39 +11,44 @@
     </h3>
 
     <span class="catalog__price">
-      {{ product.price }} ₽
+      {{ product.price | numberFormat }} ₽
     </span>
 
-    <ul class="colors colors--black">
-      <li class="colors__item">
-        <label class="colors__label">
-          <input class="colors__radio sr-only" type="radio" name="color-1" value="#73B6EA" checked="">
-          <span class="colors__value" style="background-color: #73B6EA;" />
-        </label>
-      </li>
-      <li class="colors__item">
-        <label class="colors__label">
-          <input class="colors__radio sr-only" type="radio" name="color-1" value="#8BE000">
-          <span class="colors__value" style="background-color: #8BE000;" />
-        </label>
-      </li>
-      <li class="colors__item">
-        <label class="colors__label">
-          <input class="colors__radio sr-only" type="radio" name="color-1" value="#222">
-          <span class="colors__value" style="background-color: #222;" />
-        </label>
-      </li>
-    </ul>
+    <base-color :colors="colors" :current-color.sync="currentColor" />
   </li>
 </template>
 
 <script>
+import numberFormat from '../helpers/numberFormat'
+import BaseColor from './BaseColor'
+
 export default {
   name: 'ProductItem',
+  filters: {
+    numberFormat
+  },
+  components: {
+    BaseColor
+  },
   props: {
     product: {
       type: Object,
       default: null
+    },
+    colors: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data () {
+    return {
+      currentColor: this.product.colors[0].color.id
+    }
+  },
+  computed: {
+    productChangeImage () {
+      return this.product.colors
+        .find(color => color.color.id === this.currentColor)?.gallery?.[0].file.url || 'https://lasd.lv/public/assets/no-image.png'
     }
   },
   methods: {}
