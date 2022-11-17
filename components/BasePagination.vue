@@ -58,7 +58,7 @@ export default {
     },
     perPage: {
       type: Number,
-      default: 1
+      default: 3
     }
   },
   computed: {
@@ -70,7 +70,8 @@ export default {
     paginate (page) {
       this.$router.push({
         query: {
-          page
+          page,
+          limit: this.perPage
         }
       })
       this.$emit('paginate', page)
@@ -79,7 +80,8 @@ export default {
       if (this.page !== 1) {
         this.$router.push({
           query: {
-            page: this.page - 1
+            page: this.page - 1,
+            limit: this.perPage
           }
         })
         this.$emit('paginate', this.page - 1)
@@ -89,7 +91,8 @@ export default {
       if (this.page !== this.pages) {
         this.$router.push({
           query: {
-            page: this.page + 1
+            page: this.page + 1,
+            limit: this.perPage
           }
         })
         this.$emit('paginate', this.page + 1)
