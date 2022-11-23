@@ -36,8 +36,8 @@ export default {
       default: null
     },
     colors: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => [{}]
     }
   },
   data () {
