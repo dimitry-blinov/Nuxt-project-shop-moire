@@ -1,6 +1,11 @@
 <template>
   <ul class="colors">
-    <li v-for="item in colors" :key="item.id" class="colors__item" :class="{'colors__active': item.id === currentColor}">
+    <li
+      v-for="item in colors"
+      :key="item.id"
+      class="colors__item"
+      :class="{'colors__active': item.id === currentColor}"
+    >
       <label class="colors__label">
         <input
           v-model="computedColor"
@@ -23,12 +28,12 @@ export default {
   name: 'BaseColor',
   props: {
     colors: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => [{}]
     },
     currentColor: {
-      type: Number,
-      default: 0
+      type: [Array, Number],
+      default: () => [] || 0
     },
     type: {
       default: 'radio',
