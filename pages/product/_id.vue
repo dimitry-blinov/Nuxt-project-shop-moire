@@ -3,14 +3,21 @@
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
-          <nuxt-link class="breadcrumbs__link" to="/">
+          <nuxt-link class="breadcrumbs__link" :to="{path: '/'}">
             Каталог
           </nuxt-link>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="#">
-            Носки
-          </a>
+          <nuxt-link
+            class="breadcrumbs__link"
+            :to="{path: '/', query: {
+              categoryId: product.category.id,
+              page: 1,
+              limit: 3
+            }}"
+          >
+            {{ product.category.title }}
+          </nuxt-link>
         </li>
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link">
