@@ -6,17 +6,17 @@
           Каталог
         </h1>
         <span class="content__info">
-          {{ countProducts }} {{ stringProductFormat(countProducts) }}
+          {{ countProducts }} {{ stringProducts }}
         </span>
       </div>
     </div>
 
     <div class="content__catalog">
-      <product-filter />
+      <product-filter :page.sync="page" :limit.sync="limit" />
 
       <section class="catalog">
         <product-per-page :per-page.sync="limit" />
-        <product-list :products="products" :colors="colorsProduct" />
+        <product-list :products="products" :colors="colorsProducts" />
         <base-pagination v-model="page" :count="countProducts" :per-page="limit" />
       </section>
     </div>
@@ -29,6 +29,7 @@ import ProductPerPage from '../components/ProductPerPage'
 import ProductFilter from '../components/ProductFilter'
 import ProductList from '../components/ProductList.vue'
 import BasePagination from '../components/BasePagination'
+import setFilters from '@/mixins/setFilters'
 
 export default {
   name: 'IndexPage',
@@ -38,6 +39,7 @@ export default {
     BasePagination,
     ProductPerPage
   },
+  mixins: [setFilters],
   async asyncData ({
     $axios,
     route
@@ -51,7 +53,7 @@ export default {
         }
       }
     }
-    const response = await $axios.$get('https://vue-moire.skillbox.cc/api/products', {
+    const response = await $axios.$get('/api/products', {
       params: {
         ...route.query
       }
@@ -60,7 +62,6 @@ export default {
       products: response.items.map(product => ({
         ...product,
         image: product.colors[0].gallery ? product.colors[0].gallery[0].file.url : product.colors[1].gallery[0].file.url
-
       })),
       countProducts: response.pagination ? response.pagination.total : response.items.length
     }
@@ -68,38 +69,21 @@ export default {
   data () {
     return {
       products: [],
-      countProducts: null,
-      stringProductFormat
+      countProducts: null
     }
   },
   computed: {
-    page: {
-      get () {
-        return Object.keys(this.$route.query).length ? Number(this.$route.query.page) : 1
-      },
-      set (value) {
-        this.$emit('page', value)
-      }
-    },
-    limit: {
-      get () {
-        return Object.keys(this.$route.query).length ? Number(this.$route.query.limit) : 3
-      },
-      set (value) {
-        this.$emit('limit', value)
-      }
-    },
-    colorsProduct () {
+    colorsProducts () {
       return this.products
-        ? this.products.map(product => ({
-          ...product.colors.map(color => ({
-            ...color.color
-          }))
-        }))
+        ? this.products.map(product => ([...product.colors.map(color => ({
+          ...color.color
+        }))]))
         : []
+    },
+
+    stringProducts () {
+      return stringProductFormat(this.countProducts)
     }
-  },
-  watchQuery: ['page', 'limit'],
-  methods: {}
+  }
 }
 </script>
