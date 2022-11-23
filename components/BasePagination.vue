@@ -70,8 +70,8 @@ export default {
     paginate (page) {
       this.$router.push({
         query: {
-          page,
-          limit: this.perPage
+          ...this.$route.query,
+          page
         }
       })
       this.$emit('paginate', page)
@@ -80,8 +80,8 @@ export default {
       if (this.page !== 1) {
         this.$router.push({
           query: {
-            page: this.page - 1,
-            limit: this.perPage
+            ...this.$route.query,
+            page: this.page - 1
           }
         })
         this.$emit('paginate', this.page - 1)
@@ -91,8 +91,8 @@ export default {
       if (this.page !== this.pages) {
         this.$router.push({
           query: {
-            page: this.page + 1,
-            limit: this.perPage
+            ...this.$route.query,
+            page: this.page + 1
           }
         })
         this.$emit('paginate', this.page + 1)
