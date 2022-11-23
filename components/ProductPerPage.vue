@@ -38,6 +38,7 @@ export default {
       set (limit) {
         this.$router.push({
           query: {
+            ...this.$route.query,
             page: 1,
             limit
           }
