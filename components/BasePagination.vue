@@ -71,7 +71,8 @@ export default {
       this.$router.push({
         query: {
           ...this.$route.query,
-          page
+          page,
+          limit: this.perPage
         }
       })
       this.$emit('paginate', page)
@@ -81,7 +82,8 @@ export default {
         this.$router.push({
           query: {
             ...this.$route.query,
-            page: this.page - 1
+            page: this.page - 1,
+            limit: this.perPage
           }
         })
         this.$emit('paginate', this.page - 1)
@@ -92,7 +94,8 @@ export default {
         this.$router.push({
           query: {
             ...this.$route.query,
-            page: this.page + 1
+            page: this.page + 1,
+            limit: this.perPage
           }
         })
         this.$emit('paginate', this.page + 1)

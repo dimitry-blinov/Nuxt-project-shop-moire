@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import stringProductFormat from '../helpers/stringProductFormat'
 import ProductPerPage from '../components/ProductPerPage'
 import ProductFilter from '../components/ProductFilter'
@@ -84,6 +85,14 @@ export default {
     stringProducts () {
       return stringProductFormat(this.countProducts)
     }
+  },
+  async created () {
+    await Promise.all([this.loadCart()])
+  },
+  methods: {
+    ...mapActions(['createUserKey', 'loadCart'])
   }
 }
+
+// TODO: ДОбавить лоадер на смену кол-во товаров на главной странице
 </script>
